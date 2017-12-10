@@ -1,5 +1,6 @@
 import nltk.data
 import ipdb
+import textwrap
 
 
 def chop(text, res):
@@ -12,7 +13,8 @@ def chop(text, res):
     T = tokenizer.tokenize(text)
     if len(T) == 1:
         # Sentence is too long, chop it in chunks of 140 chars
-        T = [ T[0][i:i+n] for i in range(0, len(T[0]), n)]
+        T = textwrap.wrap(T[0], 140)
+        # T = [ T[0][i:i+n] for i in range(0, len(T[0]), n)]
 
     for t in T:
         chop(t, res)
@@ -27,5 +29,5 @@ if __name__ == '__main__':
     fp = open("test.txt")
     data = fp.read()
 
-    print(chop(data))
+    print(chop(data, []))
 
