@@ -63,6 +63,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
+* **Tiphaine Viard** - *Initial work* - [TiphaineV](https://github.com/TiphaineV)
 * **Antonio Villagra De La Cruz** - *Initial work* - [AntonioVdlC](https://github.com/AntonioVdlC)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
