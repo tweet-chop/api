@@ -1,5 +1,4 @@
 import nltk.data
-import ipdb
 import textwrap
 
 
@@ -23,7 +22,8 @@ def naive_chop(text):
     return [ text[i:i+n] for i in range(0, len(text), n)]
 
 
-# nltk.download('punkt')
+nltk.download('punkt')
+
 if __name__ == '__main__':
     fp = open("test.txt")
     data = fp.read()
