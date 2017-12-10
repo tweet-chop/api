@@ -11,10 +11,9 @@ python_version = "3.6"
 
 [packages]
 
-flask = "*"
+Flask = "*"
 gunicorn = "*"
-flask-cors = "*"
-ipdb = "*"
+Flask-Cors = "*"
 nltk = "*"
 
 
