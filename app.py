@@ -15,7 +15,7 @@ def chop_text():
     abort(400)
 
   # chops = request.json['text'].split(",")
-  chops = Chop.chop(request.json['text'], res=[])
+  chops = Chop.chop(request.json['text'], int(request.json['chars']), res=[])
   return jsonify({'chops': chops})
 
 if __name__ == "__main__":

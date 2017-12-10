@@ -3,8 +3,7 @@ import ipdb
 import textwrap
 
 
-def chop(text, res):
-    n = 140
+def chop(text, n, res=[]):
     if len(text) <= n:
         res.append(text)
         return [text]
@@ -17,7 +16,7 @@ def chop(text, res):
         # T = [ T[0][i:i+n] for i in range(0, len(T[0]), n)]
 
     for t in T:
-        chop(t, res)
+        chop(t, n, res)
     return res
 
 def naive_chop(text):
