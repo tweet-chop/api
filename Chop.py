@@ -2,11 +2,11 @@ import nltk.data
 import ipdb
 
 
-def chop(text, res=[]):
+def chop(text, res):
     n = 140
     if len(text) <= n:
         res.append(text)
-        return text
+        return [text]
 
     tokenizer = nltk.data.load("tokenizers/punkt/english.pickle")
     T = tokenizer.tokenize(text)

@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, abort
 from flask_cors import CORS
+import Chop
 
 app = Flask(__name__)
 cors = CORS(app, ressources={r"/api/*": {"origins" : ["http://localhost:*", "https://tweet-chop.herokuapp.com*"]}})
@@ -13,8 +14,8 @@ def chop_text():
   if not request.json or not 'text' in request.json:
     abort(400)
 
-  chops = request.json['text'].split(" ")
-
+  # chops = request.json['text'].split(",")
+  chops = Chop.chop(request.json['text'], res=[])
   return jsonify({'chops': chops})
 
 if __name__ == "__main__":
