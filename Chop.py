@@ -1,22 +1,30 @@
 import nltk.data
 import textwrap
 
+def chop(text, n):
+    T = [text]
+    old_T = []
 
-def chop(text, n, res=[]):
-    if len(text) <= n:
-        res.append(text)
-        return [text]
+    while T != old_T:
+        # print(T)
+        offset = 10
+        old_T = T
+        tmp = []
+        for t in T:
+            if len(t) <= n - offset:
+                tmp.append(t)
+            else:
+                tokenizer = nltk.data.load("tokenizers/punkt/english.pickle")
+                if len(tokenizer.tokenize(t)) == 1:
+                    tmp.extend(textwrap.wrap(t, n - offset))
+                else:
+                    tmp.extend(tokenizer.tokenize(t))
+            T = tmp
 
-    tokenizer = nltk.data.load("tokenizers/punkt/english.pickle")
-    T = tokenizer.tokenize(text)
-    if len(T) == 1:
-        # Sentence is too long, chop it in chunks of 140 chars
-        T = textwrap.wrap(T[0], 140)
-        # T = [ T[0][i:i+n] for i in range(0, len(T[0]), n)]
+    for i in range(0, len(T)):
+        T[i] += "(" + str(i+1) + "/"+str(len(T))+")"
 
-    for t in T:
-        chop(t, n, res)
-    return res
+    return T
 
 def naive_chop(text):
     return [ text[i:i+n] for i in range(0, len(text), n)]
@@ -26,7 +34,8 @@ nltk.download('punkt')
 
 if __name__ == '__main__':
     fp = open("test.txt")
+    fp = open("test2.txt")
     data = fp.read()
 
-    print(chop(data, []))
+    print(chop(data, 140))
 
