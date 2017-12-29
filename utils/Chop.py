@@ -1,12 +1,13 @@
-import nltk.data
 import textwrap
+import nltk.data
+
+nltk.download('punkt')
 
 def chop(text, n):
     T = [text]
     old_T = []
 
     while T != old_T:
-        # print(T)
         offset = 10
         old_T = T
         tmp = []
@@ -21,17 +22,14 @@ def chop(text, n):
                     tmp.extend(tokenizer.tokenize(t))
             T = tmp
 
-    for i in range(0, len(T)):
-        T[i] += "(" + str(i+1) + "/"+str(len(T))+")"
+    if len(T) > 1:
+        for i in range(0, len(T)):
+            T[i] += " " + str(i + 1) + "/" + str(len(T))
 
     return T
 
-def naive_chop(text):
-    return [ text[i:i+n] for i in range(0, len(text), n)]
-
-
-nltk.download('punkt')
-
+# For debugging and development purposes, so we are able to
+# execute the algorithm directly on some test data!
 if __name__ == '__main__':
     fp = open("test.txt")
     fp = open("test2.txt")
